@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/common.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+<div class="page">
+
+  <aside id="sidebar" class="sidebar">
+    <div class="brand">
+      <h3>SIT-TUMKUR Admin</h3>
+      <button id="collapseBtn" class="collapse-btn">☰</button>
+    </div>
+
+    <a class="nav-item active" data-view="classrooms"><span>Manage Classrooms</span></a>
+    <a class="nav-item" data-view="announcements"><span>Announcements</span></a>
+    <a class="nav-item" data-view="lostFound"><span>Lost & Found</span></a>
+    <a class="nav-item" data-view="bookings"><span>Study Room Bookings</span></a>
+    <a class="nav-item" data-view="issues"><span>View Issues</span></a>
+    <a class="nav-item" id="logoutBtn"><span>Logout</span></a>
+  </aside>
+
+  <main class="content">
+
+    <!-- CLASSROOMS -->
+    <div id="classrooms" class="view active">
+      <h2>Manage Classrooms</h2>
+      <div id="adminClassroomList">Loading...</div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div id="announcements" class="view">
+      <h2>Manage Announcements</h2>
+      <div class="card" style="margin-bottom:24px;">
+        <h3 style="margin-bottom:16px;">Post New Announcement</h3>
+        <input id="announcementTitle" type="text" placeholder="Announcement Title">
+        <textarea id="announcementContent" rows="4" placeholder="Announcement Content"></textarea>
+        <button id="postAnnouncementBtn">Post Announcement</button>
+        <p id="announcementMsg" style="margin-top:12px;"></p>
+      </div>
+      <h3 style="margin-top:32px; margin-bottom:16px;">Recent Announcements</h3>
+      <div id="announcementList">Loading...</div>
+    </div>
+
+    <!-- LOST & FOUND -->
+    <div id="lostFound" class="view">
+      <h2>Lost & Found Management</h2>
+      <div id="lostFoundList">Loading...</div>
+    </div>
+
+    <!-- STUDY ROOM BOOKINGS -->
+    <div id="bookings" class="view">
+      <h2>Study Room Bookings</h2>
+      <div id="bookingsList">Loading...</div>
+    </div>
+
+    <!-- ISSUES -->
+    <div id="issues" class="view">
+      <h2>Reported Issues</h2>
+      <div id="issueList">Loading...</div>
+    </div>
+
+  </main>
+
+</div>
+
+<!-- MAIN JS (must load first to initialize Firebase) -->
+<script src="js/auth_admin.js"></script>
+
+<!-- USER AUTH CHECK (after Firebase is initialized) -->
+<script>
+firebase.auth().onAuthStateChanged(async (user)=>{
+  if(!user) {
+    window.location.href = "admin_login.html";
+    return;
+  }
+
+  try {
+    const snap = await firebase.firestore()
+      .collection("admins")
+      .where("email","==",user.email)
+      .get();
+
+    if(snap.empty){
+      alert("Access Denied");
+      firebase.auth().signOut();
+      window.location.href = "admin_login.html";
+    }
+  } catch(e) {
+    console.error("Auth check error:", e);
+  }
+});
+</script>
+
+</body>
+</html>

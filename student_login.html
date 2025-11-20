@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Login</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/common.css">
+
+  <!-- Firebase COMPAT SDK (Correct Version) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+<div class="center-card">
+  <h2>Student Login</h2>
+
+  <input id="email" type="email" placeholder="College Email (@sit.ac.in)">
+  <input id="password" type="password" placeholder="Password">
+
+  <button id="loginBtn">Log In</button>
+  <button id="signupBtn">Sign Up</button>
+
+  <p id="msg" style="color:red;"></p>
+
+  <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border); text-align:center;">
+    <p style="color:var(--text-secondary); font-size:14px;">
+      <a href="index.html" style="color:var(--accent); text-decoration:none; margin-right:16px;">← Home</a>
+      <a href="admin_login.html" style="color:var(--accent); text-decoration:none;">Admin Login →</a>
+    </p>
+  </div>
+</div>
+
+<!-- Your JS FILE (must be LAST) -->
+<script src="js/auth_student.js"></script>
+
+</body>
+</html>

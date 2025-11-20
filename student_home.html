@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/common.css">
+
+  <!-- Firebase COMPAT SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+<div class="page">
+
+  <aside id="sidebar" class="sidebar">
+    <div class="brand">
+      <h3>SIT-TUMKUR</h3>
+    </div>
+    <a class="nav-item active" data-view="classroom"><span>Classrooms</span></a>
+    <a class="nav-item" data-view="announcements"><span>Announcements</span></a>
+    <a class="nav-item" data-view="lostFound"><span>Lost & Found</span></a>
+    <a class="nav-item" data-view="bookRoom"><span>Book Study Room</span></a>
+    <a class="nav-item" data-view="myBookings"><span>My Bookings</span></a>
+    <a class="nav-item" data-view="report"><span>Report Issue</span></a>
+    <a class="nav-item" data-view="myIssues"><span>My Issues</span></a>
+    <a class="nav-item" id="logoutBtn"><span>Logout</span></a>
+  </aside>
+
+  <main class="content">
+
+    <!-- CLASSROOM VIEW -->
+    <div id="classroom" class="view active">
+      <h2>Classrooms</h2>
+      <div id="classroomList">Loading...</div>
+    </div>
+
+    <!-- REPORT ISSUE VIEW -->
+    <div id="report" class="view">
+      <h2>Report an Issue</h2>
+
+      <div class="card">
+        <input id="issueTitle" type="text" placeholder="Issue Title">
+        <textarea id="issueDesc" rows="4" placeholder="Describe the problem"></textarea>
+        <button id="submitIssueBtn">Submit</button>
+        <p id="issueMsg" style="color:green;"></p>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS VIEW -->
+    <div id="announcements" class="view">
+      <h2>Campus Announcements</h2>
+      <div id="announcementList">Loading...</div>
+    </div>
+
+    <!-- LOST & FOUND VIEW -->
+    <div id="lostFound" class="view">
+      <h2>Lost & Found</h2>
+      <div class="card" style="margin-bottom:24px;">
+        <h3 style="margin-bottom:16px;">Report Lost Item</h3>
+        <input id="lostItemName" type="text" placeholder="Item Name">
+        <textarea id="lostItemDesc" rows="3" placeholder="Description (color, brand, location, etc.)"></textarea>
+        <input id="lostItemLocation" type="text" placeholder="Where did you lose it?">
+        <input id="lostItemContact" type="text" placeholder="Your Contact Number">
+        <button id="reportLostBtn">Report Lost Item</button>
+        <p id="lostItemMsg" style="margin-top:12px;"></p>
+      </div>
+      <h3 style="margin-top:32px; margin-bottom:16px;">Lost Items</h3>
+      <div id="lostFoundList">Loading...</div>
+    </div>
+
+    <!-- BOOK STUDY ROOM VIEW -->
+    <div id="bookRoom" class="view">
+      <h2>Book a Study Room</h2>
+      <div class="card" style="margin-bottom:24px;">
+        <h3 style="margin-bottom:16px;">New Booking</h3>
+        <select id="roomSelect" style="width:100%; padding:12px; margin:12px 0; border-radius:8px; border:1px solid var(--border);">
+          <option value="">Select Study Room</option>
+        </select>
+        <input id="bookingDate" type="date" style="width:100%; padding:12px; margin:12px 0; border-radius:8px; border:1px solid var(--border);">
+        <select id="bookingTime" style="width:100%; padding:12px; margin:12px 0; border-radius:8px; border:1px solid var(--border);">
+          <option value="">Select Time Slot</option>
+          <option value="09:00-11:00">09:00 - 11:00</option>
+          <option value="11:00-13:00">11:00 - 13:00</option>
+          <option value="13:00-15:00">13:00 - 15:00</option>
+          <option value="15:00-17:00">15:00 - 17:00</option>
+          <option value="17:00-19:00">17:00 - 19:00</option>
+        </select>
+        <button id="bookRoomBtn">Book Room</button>
+        <p id="bookingMsg" style="margin-top:12px;"></p>
+      </div>
+    </div>
+
+    <!-- MY BOOKINGS VIEW -->
+    <div id="myBookings" class="view">
+      <h2>My Study Room Bookings</h2>
+      <div id="myBookingsList">Loading...</div>
+    </div>
+
+    <!-- MY ISSUES VIEW -->
+    <div id="myIssues" class="view">
+      <h2>My Reported Issues</h2>
+      <div id="myIssuesList">Loading...</div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MAIN JS (must load first to initialize Firebase) -->
+<script src="js/auth_student.js"></script>
+
+<!-- USER AUTH CHECK (after Firebase is initialized) -->
+<script>
+firebase.auth().onAuthStateChanged((user)=>{
+  if(!user) window.location.href = "student_login.html";
+});
+</script>
+
+</body>
+</html>
