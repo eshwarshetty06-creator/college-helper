@@ -1,57 +1,60 @@
-📘 College Helper — Web Application
+College Helper — Web Application
 
-A lightweight and user-friendly web application designed to simplify basic college-related tasks for students and administrators. The project includes clean UI pages, authentication flows, and easy navigation — built entirely using HTML, CSS, and JavaScript.
+A simple, clean, and user-friendly web application designed to assist students and administrators with basic college-related tasks. It provides login pages, dashboards, and organized navigation built entirely with HTML, CSS, and JavaScript.
 
 
-🚀 Features
-👨‍🎓 Student Features
-Student login page
-Student home dashboard
-Simple and clean navigation
+FEATURES:
 
-🧑‍💼 Admin Features
-Admin login page
-Admin dashboard
-Basic admin access controls
+Student Features:
 
-🎨 UI & Structure
-Responsive HTML pages
-Reusable CSS
-Organized JavaScript authentication logic
+1.Student login page
+2.Student dashboard
+3.Easy and clean navigation
 
-🧩 Project Structure
-college-helper/
+Admin Features:
+
+1.Admin login page
+2.Admin dashboard
+3.Basic admin controls
+
+UI & Structure:
+
+1.Simple and responsive design
+2.Reusable CSS styles
+3.Organized JavaScript structure
+
+
+PROJECT STRUCTURE
+
+college-helper
 │
-├── index.html               
-├── student_login.html       
-├── admin_login.html         
-├── student_home.html        
-├── admin_home.html          
+├── index.html
+├── student_login.html
+├── admin_login.html
+├── student_home.html
+├── admin_home.html
 │
-├── css/
-│   └── common.css           
+├── css
+│ └── common.css
 │
-└── js/
-    ├── auth.js              
-    ├── auth_admin.js        
-    └── auth_student.js      
+└── js
+├── auth.js
+├── auth_admin.js
+└── auth_student.js
 
 
-🛠️ Tech Stack
+TECH STACK
 
-HTML5
-CSS3
-JavaScript
-
-
-⚙️ How to Run
-
-Download or clone the repository
-Open index.html in any browser
-Choose Student or Admin login
-Navigate to respective dashboard pages
-No backend or server required — fully frontend based.
+1.HTML5
+2.CSS3
+3.JavaScript
 
 
-📌 Purpose
-This project was created for learning, practicing frontend skills, and building a simple college-related helper interface for students and admins.
+HOW TO RUN
+
+1.Download or clone the repository
+2.Open the file "index.html" in a web browser
+3.Select Student or Admin login
+4.Navigate through the respective dashboard pages
+
+This project was created to practice frontend development, understand simple authentication flows, and build a clean web interface suitable for college-related tasks.
